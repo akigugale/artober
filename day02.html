@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ARtober | Day 02</title>
+
+        <link rel="shortcut icon" href="assets/favicon.ico">
+        <script src="assets/js/aframe.min.js"></script>
+        <script src="assets/js/aframe-ar.min.js"></script>
+
+
+<script>
+        AFRAME.registerComponent('soundhandler', {
+            tick: function () {
+                   var entity = document.querySelector('[sound]');
+                 if (document.querySelector('a-marker').object3D.visible == true) {
+                    entity.components.sound.playSound();
+                } else {
+                    entity.components.sound.pauseSound();
+                }
+
+             }
+        });
+        </script>
+    </head>
+
+    <body>
+    <div style='position: fixed; top: 10px; width: 100%;  text-align: center; z-index: 1;'>
+        <a href="https://artober.akigugale.me" target="_blank">ARtober</a> - an AR version of INKtober
+        <br/>
+        Download the marker here <a href="assets/marker/pattern-rawmarker02.png" target='_blank'>Marker</a>
+    </div>
+    <div style='position: fixed; bottom: 10px; width: 100%; text-align: center; z-index: 1;'>
+        by <a href="https://twitter.com/akigugale" target="_blank">@akigugale</a>
+    </div>
+
+<!-- <a-scene> -->
+<a-scene embedded arjs="trackingMethod: best; patternRatio: 0.75; debugUIEnabled: false ">
+
+
+    <a-marker preset='custom' type="pattern" url="/assets/marker/pattern-rawmarker02.patt">
+        <a-plane width="2.5" height="1.5" color="#FFFFFF" position="0 1 -1">
+            <a-image src="/assets/textures/basketball_score.png" position="0 0 0.1" width="1" height=".5"></a-image>
+        </a-plane>
+        <a-text value="ARtober day 2 - Basketball" color="black" position="0 1.4 -0.9" align="center" font="roboto" wrap-count="90"></a-text>
+        <!-- <a-entity
+        position="0 1 -1"
+        geometry="primitive: plane; width: 2.5; height: 1.5"
+        material="color: #7BC8A4"
+        text="color: black; align: center; font: roboto; baseline: top;
+              value: ARtober day 1 - Astronaut"
+      ></a-entity> -->
+
+      <!-- <a-entity obj-model="obj: #tree-obj; mtl: #tree-mtl"></a-entity> -->
+
+
+        <a-plane src="/assets/textures/court.jpg" position="0 0 0" rotation="-90 0 0" width="3" height="2" color="grey" ></a-plane>
+        <a-entity light="type: ambient; color: #FFF;  intensity: 2" ></a-entity>
+
+        <a-entity obj-model="obj: url(/assets/models/basketball/Basketball.obj); mtl: url(assets/models/basketball/Basketball.mtl)" position="0 0 0" rotation="0 60 0" scale="0.03 0.01 0.03" animation__scale="property: scale; dir: alternate; dur: 500; loop: true; to: 0.03 0.03 0.03" animation__position="property: position; dir: alternate; dur: 500; loop: true; to: 0 1 0" sound="src: url(/assets/bounce.mp3); autoplay: false; loop:true;" soundhandler> </a-entity>
+        <!-- <a-entity gltf-model="url(assets/models/basketball/scene.gltf)" position="0 0 0" scale=".3 0.3 0.3" animation="property: position; dir: alternate; dur: 1000; easing: easeInSine; loop: true; to: 0 1 0" soundhandler> </a-entity> -->
+
+
+        </a-marker>
+        <a-entity sound="src: #sound" autoplay="false"></a-entity>
+        <a-entity camera></a-entity>
+	</a-scene>
+</body>
+</html>
