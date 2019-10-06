@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ARtober | Day 04</title>
+
+        <link rel="shortcut icon" href="assets/favicon.ico">
+        <script src="assets/js/aframe.min.js"></script>
+        <script src="assets/js/aframe-ar.min.js"></script>
+
+
+
+    </head>
+
+    <body>
+    <div style='position: fixed; top: 10px; width: 100%;  text-align: center; z-index: 1;'>
+        <a href="https://artober.akigugale.me" target="_blank">ARtober</a> - an AR version of INKtober
+        <br/>
+        Download the marker here <a href="assets/marker/pattern-rawmarker04.png" target='_blank'>Marker</a>
+    </div>
+    <div style='position: fixed; bottom: 10px; width: 100%; text-align: center; z-index: 1;'>
+        by <a href="https://twitter.com/akigugale" target="_blank">@akigugale</a>
+    </div>
+    <div style="position: fixed; bottom: 40px; text-align: center; width: 100%; z-index: 1;"><button style="height: 5em; width: 20em; border: brown 2px solid; background-color: burlywood;" onclick="changeFlavour();"><span style="color: brown; font-size: 2em;"> Change Flavour</span></button></div>
+
+<!-- <a-scene> -->
+<a-scene embedded arjs="trackingMethod: best; patternRatio: 0.75; debugUIEnabled: false ">
+
+
+    <a-marker preset='custom' type="pattern" url="/assets/marker/pattern-rawmarker04.patt">
+
+        <a-plane width="2.5" height="1.5" color="white" position="0 1 -1"></a-plane>
+
+        <a-text value="ARtober day 3 - Confetti" color="black" position="0 1.4 -0.9" align="center" font="roboto" wrap-count="90"></a-text>
+
+        <a-entity light="type: ambient; color: white; intensity: 1.3" ></a-entity>
+        <a-entity gltf-model="url(/assets/models/Dish.gltf)" scale="4 4 4"></a-entity>
+
+            <a-entity id="vanilla" gltf-model="url(/assets/models/donut/two.gltf)" position="0 0 0" scale="2 2 2"> </a-entity>
+            <a-entity id="strawberry" gltf-model="url(/assets/models/donut/one.gltf)" scale="0.3 0.3 0.3" position="0 0.15 0"  visible="false"> </a-entity>
+
+
+    </a-marker>
+    <a-entity camera></a-entity>
+	</a-scene>
+</body>
+    <script>
+    var flavour = false;
+    function changeFlavour() {
+        if (flavour) {
+            document.getElementById('strawberry').object3D.visible = false;
+            document.getElementById('vanilla').object3D.visible = true;
+            flavour = false;
+        }
+        else {
+            document.getElementById('strawberry').object3D.visible = true;
+            document.getElementById('vanilla').object3D.visible = false;
+            flavour = true;
+        }
+        console.log('Button pressed ' + flavour);
+    }
+    </script>
+</html>
