@@ -11,18 +11,19 @@
     </head>
 
     <body>
-    <div style='position: fixed; top: 10px; width: 100vw;  text-align: center; z-index: 1;'>
+    <div style='position: fixed; top: 10px; left: 50px; text-align: center; z-index: 1;'>
         <a href="https://artober.akigugale.me" target="_blank">ARtober</a> - an AR version of INKtober
         <br/>
         Download the marker here <a href="assets/marker/pattern-rawmarker06.png" target='_blank'>Marker</a>
     </div>
-    <div style='position: fixed; bottom: 10px; width: 100vw; text-align: center; z-index: 1;'>
+    <div style='position: fixed; bottom: 10px; right: 10px; text-align: center; z-index: 1;'>
         by <a href="https://twitter.com/akigugale" target="_blank">@akigugale</a>
     </div>
-    <div style="position: fixed; bottom: 40px; text-align: center; width: 100vw; z-index: 1;"><button style="height: 5em; width: 20em; border: darkgreen 2px solid; background-color: darkgreen ;" onclick="plantFlower();"><span style="color: white; font-size: 2em;"> Plant Flower</span></button></div>
+
+    <div style="position: fixed; bottom: 40px; left: 50px; text-align: center; display: block; z-index: 1;"><button style="height: 5em; width: 20em; border: darkgreen 2px solid; background-color: darkgreen ;" onclick="plantFlower();"><span style="color: white; font-size: 2em;"> Plant Flower</span></button></div>
 
 <!-- <a-scene> -->
-<a-scene embedded arjs="patternRatio: 0.75; debugUIEnabled: false ">
+<a-scene embedded arjs="sourceType: webcam; trackingMethod: best; patternRatio: 0.75; debugUIEnabled: false; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;">
     <a-assets>
         <a-asset-item id="daisy" src="/assets/models/daisy.gltf"></a-asset-item>
     </a-assets>
