@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ARtober | Day 06</title>
+
+        <link rel="shortcut icon" href="assets/favicon.ico">
+        <script src="assets/js/aframe.min.js"></script>
+        <script src="assets/js/aframe-ar.min.js"></script>
+        <script src="https://unpkg.com/aframe-text-geometry-component@0.5.1/dist/aframe-text-geometry-component.min.js"></script>
+
+    </head>
+
+    <body>
+    <div style='position: fixed; top: 10px; width: 100%;  text-align: center; z-index: 1;'>
+        <a href="https://artober.akigugale.me" target="_blank">ARtober</a> - an AR version of INKtober
+        <br/>
+        Download the marker here <a href="assets/marker/pattern-rawmarker06.png" target='_blank'>Marker</a>
+    </div>
+    <div style='position: fixed; bottom: 10px; width: 100%; text-align: center; z-index: 1;'>
+        by <a href="https://twitter.com/akigugale" target="_blank">@akigugale</a>
+    </div>
+    <div style="position: fixed; bottom: 40px; text-align: center; width: 100%; z-index: 1;"><button style="height: 5em; width: 20em; border: darkgreen 2px solid; background-color: darkgreen ;" onclick="plantFlower();"><span style="color: white; font-size: 2em;"> Plant Flower</span></button></div>
+
+<!-- <a-scene> -->
+<a-scene embedded arjs="trackingMethod: best; patternRatio: 0.75; debugUIEnabled: false ">
+    <a-assets>
+        <a-asset-item id="daisy" src="/assets/models/daisy.gltf"></a-asset-item>
+    </a-assets>
+
+
+    <a-marker preset='custom' type="pattern" url="/assets/marker/pattern-rawmarker06.patt">
+
+        <a-plane src="/assets/textures/farm.jpg" width="2.5" height="1.5" color="white" position="0 1 -1"></a-plane>
+
+        <a-text value="ARtober day 6 - Flower" color="black" position="0 1.4 -0.9" align="center" font="roboto" wrap-count="90"></a-text>
+
+        <a-entity id="plant-flower-text">
+            <a-entity text-geometry="value: Plant a; size: 0.8; weight: bold; height: 0; bevelEnabled: true; bevelSize: 0.005; bevelThickness: 0.001; curveSegments: 5; size: .3; height: .05;" material="color:red; metalness:0.3; roughness: 0.05;" position="-0.6 .05 0.4" rotation="-90 0 40"></a-entity>
+            <a-entity text-geometry="value: flower; size: 0.8; weight: bold; height: 0; bevelEnabled: true; bevelSize: 0.005; bevelThickness: 0.001; curveSegments: 5; size: .3; height: .05;" material="color:red; metalness:0.3; roughness: 0.05;" position="-0.2 .05 0.7" rotation="-90 0 40"></a-entity>
+        </a-entity>
+        <a-entity id="farm">
+
+        </a-entity>
+        <a-plane material="src:url(/assets/textures/grass.jpg); repeat: 4 4" color="lightgrey" position="0 0 0" rotation="-90 0 0" width="2" height="2"></a-plane>
+
+    </a-marker>
+    <a-entity camera></a-entity>
+	</a-scene>
+</body>
+<script>
+        var count = 0, x = -0.95, z = -1.5;
+
+
+        daisyEl.addEventListener('loaded', function () {
+        console.log('sphere attached');
+        });
+
+        function plantFlower() {
+            if (count > 48) {
+                console.log('No more space');
+                window.alert("The farm is full!");
+
+            }
+            else {
+                if(count == 0) {
+                    var text = document.querySelector('#plant-flower-text');
+                    text.object3D.visible = false;
+                }
+                if(count%7 == 0){
+                    x = -0.95;
+                }
+                x2 = (x + 0.25*(count%7)).toFixed(2);
+                z2 = (z + 0.25*(Math.floor(count/7))).toFixed(2);
+                console.log(x2 + " " +z2);
+                count++;
+
+                var daisyEl = document.createElement('a-entity');
+                daisyEl.setAttribute('gltf-model', "#daisy");
+                var farm = document.querySelector('#farm');
+
+                daisyEl.setAttribute('position', x2 + " -0.8 " + z2);
+                farm.appendChild(daisyEl);
+            }
+            // console.log('Button pressed ');
+        }
+    </script>
+</html>
