@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+</body>
+</html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>ARtober | Day 07</title>
+        <link rel="shortcut icon" href="assets/favicon.ico">
+        <style>
+            @import "https://fonts.googleapis.com/css?family=Open+Sans:600";
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                overflow: hidden;
+                /* background-color: #666666; */
+            }
+            body {
+                /* width: 100%;
+                position: fixed; */
+            }
+            #joystick {
+                width: 200px;
+                height: 200px;
+                background: #333333;
+                margin: 20px auto;
+                position: relative;
+                border-radius: 8px;
+            }
+            #knob {
+                cursor: move;
+                border-radius: 100%;
+                width: 100px;
+                height: 100px;
+                position: relative;
+                -webkit-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.75);
+                -moz-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.75);
+                box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.75);
+                background: #ff0000;
+                background: -moz-radial-gradient(
+                    center,
+                    ellipse cover,
+                    #ff0000 0%,
+                    #a02020 100%
+                );
+                background: -webkit-radial-gradient(
+                    center,
+                    ellipse cover,
+                    #ff0000 0%,
+                    #a02020 100%
+                );
+                background: radial-gradient(
+                    ellipse at center,
+                    #ff0000 0%,
+                    #a02020 100%
+                );
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#a02020',GradientType=1 );
+            }
+            #console {
+                color: #222222;
+                text-align: center;
+                font-family: "Open Sans", sans-serif;
+                font-size: .6em;
+            }
+            #gamepad {
+                z-index: 1;
+                position: absolute;
+                bottom: 50px;
+                right: 50px;
+            }
+        </style>
+        <script src="assets/js/aframe.min.js"></script>
+        <script src="assets/js/aframe-ar.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.6/interact.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/plugins/CSSPlugin.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/easing/EasePack.min.js"></script>
+        <script src="/assets/js/joystick.js"></script>
+        <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+    </head>
+    <body>
+        <div id="gamepad">
+            <div id="joystick">
+                <div class="draggable" id="knob"></div>
+            </div>
+
+            <div id="console">
+                <h1>
+                    Pan: <span id="panValue">0</span>, Tilt:
+                    <span id="tiltValue">0</span>
+                </h1>
+                <h1>
+                    Rotation <span id="rotation">0</span>
+                    <!-- , Tilt:
+                        <span id="tiltValue">0</span> -->
+                    </h1>
+            </div>
+        </div>
+
+        <a-scene embedded arjs="trackingMethod: best; patternRatio: 0.75; debugUIEnabled: false ">
+            <a-marker preset='custom' type="pattern" url="/assets/marker/pattern-rawmarker07.patt">
+            <!-- <a-plane width="2.5" height="1.5" color="white" position="0 1 -1"></a-plane> -->
+
+        <a-text value="ARtober day 7 - Goldfish" color="white" position="0 1.4 -0.9" align="center" font="roboto" wrap-count="90"></a-text>
+
+        <a-entity id="goldfish" gltf-model="url(assets/models/Mesh_Goldfish.gltf)" position="0 .5 0" scale=".005 .005 .005" rotation="0 90 0" animation__rotation="property: rotation; dur: 500; to: 0 270 0" animation__position="property: position; to: 0 0.5 0; dur: 2000;"> </a-entity>
+
+        <a-plane width="2.7" height="2.7" src="/assets/textures/water.jpg" rotation="-90 0 0" color="lightblue"></a-plane>
+        <a-entity rotation="0 0 180" particle-system="preset: snow; color: lightblue; particleCount: 1000; size: 3"></a-entity>
+    </a-marker>
+    <a-entity camera></a-entity>
+	</a-scene>
+
+
+    </body>
+</html>
